@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Team</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+
+    <header>
+        <h1>Sports Team Management</h1>
+        <nav>
+            <ul>
+                <li><a href="index.html">Home</a></li>
+                <li><a href="team.html">Team</a></li>
+                <li><a href="schedule.html">Schedule</a></li>
+                <li><a href="logoutpage.html" id="logoutLink" style="display: none;">Logout</a></li>
+            </ul>
+        </nav>
+
+        <div class="container">
+            <div id="userEmail" class="user-info" style="display: none;">
+                <span id="userEmailText"></span>
+                <div class="dropdown">
+                    <a href="#" id="switchAccount">Switch Account</a>
+                </div>
+            </div>
+        </div>
+    </header>
+
+    <main>
+        <section class="team">
+            <h2>Real Madrid CF</h2>
+            <ul>
+                <li>Jayendra - Forward (Captain)</li>
+                <li>Nithish - Forward</li>
+                <li>Sai - Forward</li>
+                <li>Sameer - Defender</li>
+                <li>Mahendra - Defender</li>
+                <li>Subhani - Goal Keeper</li>
+            </ul>
+        </section>
+
+        <section class="stats">
+            <h3>Team Statistics</h3>
+            <p>Matches Played: <span id="matchesPlayed">20</span></p>
+            <p>Wins: <span id="wins">15</span></p>
+            <p>Losses: <span id="losses">5</span></p>
+        </section>
+    </main>
+
+    <footer>
+        <p>&copy; 2024 Sports Team Management. All Rights Reserved.</p>
+    </footer>
+
+    <script>
+     
+        const storedUser = JSON.parse(localStorage.getItem('user'));
+
+        if (storedUser && storedUser.email) {
+          
+            const userEmailText = document.getElementById('userEmailText');
+            userEmailText.textContent = storedUser.email;
+            document.getElementById('userEmail').style.display = 'inline-block'; 
+
+            document.getElementById('logoutLink').style.display = 'inline'; 
+        } else {
+
+            document.getElementById('userEmail').style.display = 'none';
+            document.getElementById('logoutLink').style.display = 'none'; 
+            window.location.href = 'loginpage.html';
+        }
+
+        document.getElementById('switchAccount').addEventListener('click', function(event) {
+            event.preventDefault();
+
+            localStorage.removeItem('user');
+
+            window.location.href = 'loginpage.html';
+        });
+    </script>
+</body>
+</html>

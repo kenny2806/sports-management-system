@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Schedule</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+
+    <header>
+        <h1>Real Madrid</h1>
+        <nav>
+            <ul>
+                <li><a href="index.html">Home</a></li>
+                <li><a href="team.html">Team</a></li>
+                <li><a href="schedule.html">Schedule</a></li>
+                <li><a href="logoutpage.html" id="logoutLink" style="display: none;">Logout</a></li>
+            </ul>
+        </nav>
+        <div class="container">
+            <div id="userEmail" class="user-info" style="display: none;">
+                <span id="userEmailText"></span>
+                <div class="dropdown">
+                    <a href="#" id="switchAccount">Switch Account</a>
+                </div>
+            </div>
+        </div>
+    </header>
+
+    <main>
+        <section class="match">
+            <h2>Upcoming Games</h2>
+            <ul id="gameList">
+                <li>Oct 6, 12:30 AM - Real Madrid vs Villareal</li>
+                <li>Oct 20, 12:30 AM - Real Madrid vs Celta Vigo</li>
+                <li>Oct 20, 12:30 AM - Dortmund vs Real Madrid</li>
+                <li>Oct 27, TBD - Real Madrid vs Barcelona</li>
+                <li>Nov 3, TBD - Valencia vs Real Madrid</li>
+                <li>Nov 6, 1:30 AM - Real Madrid vs Milan</li>
+            </ul>
+            <button id="showMoreBtn">Show More Games</button>
+            <div id="moreGames" style="display: none;">
+                <ul>
+                    <li>Nov 10, TBD - Real Madrid vs Sevilla</li>
+                    <li>Nov 17, TBD - Real Madrid vs Atletico Madrid</li>
+                </ul>
+            </div>
+        </section>
+    </main>
+
+    <footer>
+        <p>&copy; 2024 Sports Team Management. All rights reserved.</p>
+    </footer>
+
+    <script>
+
+        const storedUser = JSON.parse(localStorage.getItem('user'));
+        if (storedUser && storedUser.email) {
+
+            const userEmailText = document.getElementById('userEmailText');
+            userEmailText.textContent = storedUser.email;
+            document.getElementById('userEmail').style.display = 'inline-block'; 
+            document.getElementById('logoutLink').style.display = 'inline'; 
+        } else {
+
+            document.getElementById('userEmail').style.display = 'none';
+            document.getElementById('logoutLink').style.display = 'none'; 
+
+            window.location.href = 'loginpage.html';
+        }
+
+        document.getElementById('showMoreBtn').addEventListener('click', function() {
+            const moreGames = document.getElementById('moreGames');
+            if (moreGames.style.display === 'none') {
+                moreGames.style.display = 'block'; 
+                this.textContent = 'Show Less Games'; 
+            } else {
+                moreGames.style.display = 'none';
+                this.textContent = 'Show More Games'; 
+            }
+        });
+
+        document.getElementById('switchAccount').addEventListener('click', function(event) {
+            event.preventDefault();
+
+            localStorage.removeItem('user');
+            window.location.href = 'loginpage.html';
+        });
+    </script>
+
+</body>
+</html>

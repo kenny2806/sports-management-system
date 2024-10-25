@@ -1,0 +1,112 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Real Madrid - Home</title>
+    <link rel="stylesheet" href="styles.css">
+
+    <style>
+        .background-video {
+            position: fixed;
+            right: 0;
+            bottom: 0;
+            min-width: 100%; 
+            min-height: 100%;
+            z-index: -1; 
+            object-fit: cover;
+          }
+          body, html {
+            margin: 0;
+            padding: 0;
+            height: 100%;
+          }
+          
+          main {
+            position: relative;
+            z-index: 4;
+            width: 0%;
+            margin: 100px auto;
+            text-align: center;
+            color: #fff; 
+          }
+          
+        </style>
+
+
+</head>
+<body>
+    <video autoplay muted loop class="background-video">
+        <source src="video.mp4" type="video/mp4">
+    </video>
+    <header>
+        <h1>Real Madrid</h1>
+        <nav>
+            <ul>
+                <li><a href="index.html">Home</a></li>
+                <li><a href="team.html">Team</a></li>
+                <li><a href="schedule.html">Schedule</a></li>
+                <li><a href="registration.html">Register</a></li>
+                <li><a href="loginpage.html">Login</a></li>
+                <li><a href="logoutpage.html" id="logoutLink" style="display: none;">Logout</a></li>
+            </ul>
+        </nav>
+        <div class="container">
+            <div id="userEmail" class="user-info" style="display: none;">
+                <span id="userEmailText"></span>
+                <div class="dropdown">
+                    <a href="#" id="switchAccount">Switch Account</a>
+                </div>
+            </div>
+        </div>
+        
+        
+        
+    </header>
+    
+    <main>
+        
+        <section class="ind">
+            <img src="sport.jpg" alt="Sports Team Management" width="800" height="530">
+            <h1>Welcome to Real Madrid</h1>
+            <p>Manage your sport team effectively with ease</p>
+            <p>Register to get started or log in.</p>
+        </section>
+    </main>
+    
+    <footer>
+        <p>&copy; 2024 Real Madrid. All rights reserved.</p>
+    </footer>
+
+    <script>
+        // Retrieve the logged-in user from localStorage
+        const storedUser = JSON.parse(localStorage.getItem('user'));
+    
+        // Check if user is logged in
+        if (storedUser && storedUser.email) {
+            // Display the user's email in the header
+            const userEmailText = document.getElementById('userEmailText');
+            userEmailText.textContent = storedUser.email;
+            document.getElementById('userEmail').style.display = 'inline-block'; // Show the email in the header
+    
+            // Show the logout link when logged in
+            document.getElementById('logoutLink').style.display = 'inline'; 
+        } else {
+            // If no user is logged in, hide the email display
+            document.getElementById('userEmail').style.display = 'none';
+        }
+    
+        // Add event listener for "Switch Account" option
+        document.getElementById('switchAccount').addEventListener('click', function(event) {
+            event.preventDefault();
+            // Clear localStorage to log the user out
+            localStorage.removeItem('user');
+            // Redirect to the login page
+            window.location.href = 'loginpage.html';
+        });
+    </script>
+    
+
+
+</body>
+</html>

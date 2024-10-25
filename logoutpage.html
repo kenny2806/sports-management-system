@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Logging Out</title>
+    <link rel="stylesheet" href="styles.css">
+    <style>
+        body {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            background-color: #f9f9f9;
+            font-family: Arial, sans-serif;
+        }
+        .logout-message {
+            text-align: center;
+        }
+    </style>
+</head>
+<body>
+    <div class="logout-message">
+        <h1>Logging Out...</h1>
+        <p>You have successfully logged out. Redirecting to homepage...</p>
+    </div>
+
+    <script>
+        localStorage.removeItem('user');
+        setTimeout(function() {
+            window.location.href = 'index.html'; 
+        }, 2000);
+    </script>
+</body>
+</html>
